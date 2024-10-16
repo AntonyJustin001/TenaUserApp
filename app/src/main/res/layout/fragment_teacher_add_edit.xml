@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            android:contentDescription="@null"
+            android:paddingVertical="@dimen/_5sdp"
+            android:src="@drawable/ic_arrow_left"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/black" />
+
+        <TextView
+            android:id="@+id/tvAddEditStudentHeading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/jost_bold"
+            android:paddingVertical="@dimen/_5sdp"
+            android:text="Add Teacher"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toBottomOf="@id/ivBack"
+            app:layout_constraintLeft_toRightOf="@id/ivBack"
+            app:layout_constraintTop_toTopOf="@id/ivBack" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_7sdp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvAddEditStudentHeading">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                app:cardCornerRadius="@dimen/_10sdp"
+                android:elevation="@dimen/_10sdp"
+                android:background="@drawable/bg_rounded_image"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_13sdp"
+                android:layout_marginLeft="@dimen/_13sdp"
+                android:layout_marginRight="@dimen/_13sdp"
+                android:layout_marginEnd="@dimen/_13sdp">
+                <ImageView
+                    android:id="@+id/ivStudentPic"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_profile"
+                    android:background="@color/white"
+                    android:scaleType="centerCrop" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/tvImagePicker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginVertical="@dimen/_5sdp"
+                android:fontFamily="@font/jost_medium"
+                android:text="Upload Teacher Profile Picture"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etStudentNameContainer"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Teacher Name"
+                app:boxStrokeColor="@color/black"
+                app:errorEnabled="true"
+                app:hintTextColor="@color/black"
+                app:placeholderText="">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etStudentNameTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/jost_medium"
+                    android:inputType="text" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etStudentSectionContainer"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Teacher Section"
+                app:boxStrokeColor="@color/black"
+                app:errorEnabled="true"
+                app:hintTextColor="@color/black"
+                app:placeholderText="">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etStudentSection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/jost_medium"
+                    android:inputType="text" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etMobileContainer"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Mobile"
+                app:boxStrokeColor="@color/black"
+                app:errorEnabled="true"
+                app:hintTextColor="@color/black"
+                app:placeholderText="">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etMobile"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/jost_medium"
+                    android:inputType="phone" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etGmailIdContainer"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="GmailID"
+                app:boxStrokeColor="@color/black"
+                app:errorEnabled="true"
+                app:hintTextColor="@color/black"
+                app:placeholderText="">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etGmailID"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/jost_medium"
+                    android:inputType="textEmailAddress" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+<!--            <com.skydoves.powerspinner.PowerSpinnerView-->
+<!--                android:id="@+id/workTypeSpinner"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="0dp"-->
+<!--                android:layout_gravity="top|start"-->
+<!--                android:layout_marginVertical="@dimen/_7sdp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:background="@drawable/spinner_background"-->
+<!--                android:fontFamily="@font/jost_medium"-->
+<!--                android:hint="@string/field_work_type"-->
+<!--                android:padding="15dp"-->
+<!--                android:textColor="@color/black"-->
+<!--                app:spinner_arrow_gravity="end"-->
+<!--                app:spinner_arrow_padding="@dimen/_5sdp"-->
+<!--                app:spinner_arrow_tint="@color/power_spinner_arrow_tint"-->
+<!--                app:spinner_divider_color="@color/power_spinner_arrow_tint"-->
+<!--                app:spinner_item_array="@array/workType"-->
+<!--                app:spinner_item_height="46dp"-->
+<!--                app:spinner_popup_background="@drawable/spinner_background" />-->
+
+<!--            <com.skydoves.powerspinner.PowerSpinnerView-->
+<!--                android:id="@+id/designationSpinner"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="0dp"-->
+<!--                android:layout_gravity="top|start"-->
+<!--                android:layout_marginVertical="@dimen/_7sdp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:background="@drawable/spinner_background"-->
+<!--                android:fontFamily="@font/jost_medium"-->
+<!--                android:hint="Designation"-->
+<!--                android:padding="15dp"-->
+<!--                android:textColor="@color/black"-->
+<!--                app:spinner_arrow_gravity="end"-->
+<!--                app:spinner_arrow_padding="@dimen/_5sdp"-->
+<!--                app:spinner_item_array="@array/designation"-->
+<!--                app:spinner_arrow_tint="@color/power_spinner_arrow_tint"-->
+<!--                app:spinner_divider_color="@color/power_spinner_arrow_tint"-->
+<!--                app:spinner_item_height="46dp"-->
+<!--                app:spinner_popup_background="@drawable/spinner_background" />-->
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/etAddressContainer"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Address"
+                app:boxStrokeColor="@color/black"
+                app:errorEnabled="true"
+                app:hintTextColor="@color/black"
+                app:placeholderText="">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/jost_medium"
+                    android:gravity="start"
+                    android:inputType="textMultiLine"
+                    android:lines="5" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSave"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_7sdp"
+                android:layout_marginVertical="@dimen/_7sdp"
+                android:backgroundTint="@color/colorPrimary"
+                android:fontFamily="@font/jost_medium"
+                android:padding="@dimen/_5sdp"
+                android:text="Next"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:cornerRadius="6dp" />
+        </LinearLayout>
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/progressBar"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="gone"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/loader" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

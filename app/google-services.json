@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "288742330869",
+    "firebase_url": "https://tenahealthcare-1e82e-default-rtdb.firebaseio.com",
+    "project_id": "tenahealthcare-1e82e",
+    "storage_bucket": "tenahealthcare-1e82e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:288742330869:android:d863884ca26d162684d0bc",
+        "android_client_info": {
+          "package_name": "tena.admin.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAO5hNyqla0JZaBcqAPir0FYfpzMNK1Cww"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:288742330869:android:de4a530b9843b2ce84d0bc",
+        "android_client_info": {
+          "package_name": "tena.health.care"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAO5hNyqla0JZaBcqAPir0FYfpzMNK1Cww"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

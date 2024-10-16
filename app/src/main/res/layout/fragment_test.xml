@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btnStore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="StoreProductsData"/>
+
+    <Button
+        android:id="@+id/btnStoreSlider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="StoreSliderData"/>
+
+    <Button
+        android:id="@+id/btnGetAll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Retrieve All Data"/>
+
+    <Button
+        android:id="@+id/btnGet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Retrieve Data"/>
+
+</LinearLayout>

@@ -1,0 +1,60 @@
+[versions]
+agp = "8.3.1"
+kotlin = "1.9.0"
+coreKtx = "1.13.1"
+junit = "4.13.2"
+junitVersion = "1.1.5"
+espressoCore = "3.5.1"
+appcompat = "1.7.0"
+material = "1.12.0"
+activity = "1.8.0"
+constraintlayout = "2.1.4"
+volley = "1.2.0"
+viewpager2 = "1.0.0"
+fragmentKtx = "1.5.7"
+retrofit2 = "2.9.0"
+converterGson = "2.9.0"
+lottie = "6.1.0"
+intuit = "1.1.1"
+googleServices = "4.4.2"
+firebaseBom = "33.2.0"
+gson = "2.8.9"
+glide = "4.15.1"
+compiler = "4.15.1"
+navigationFragmentKtx = "2.8.0"
+navigationUiKtx = "2.8.0"
+exoplayer = "2.19.0"
+
+[libraries]
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+junit = { group = "junit", name = "junit", version.ref = "junit" }
+androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+volley = { group = "com.android.volley", name = "volley", version.ref = "volley" }
+viewpager2 = { group = "androidx.viewpager2", name = "viewpager2", version.ref = "viewpager2" }
+fragmentKtx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragmentKtx" }
+retrofit2 = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit2" }
+retrofit2-converter = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "converterGson" }
+lottie = { group = "com.airbnb.android", name = "lottie", version.ref = "lottie" }
+responsive = { group = "com.intuit.sdp", name = "sdp-android", version.ref = "intuit" }
+firebaseBom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
+firebaseAnalytics = { group = "com.google.firebase", name = "firebase-analytics" }
+firebaseAuth= { group = "com.google.firebase", name = "firebase-auth" }
+firebaseDatabase= { group = "com.google.firebase", name = "firebase-database" }
+fireStore= { group = "com.google.firebase", name = "firebase-firestore" }
+gson= { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
+glide= { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
+glideCompiler= { group = "com.github.bumptech.glide", name = "compiler", version.ref = "compiler" }
+androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
+androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }
+exoPlayer = { group = "com.google.android.exoplayer", name = "exoplayer", version.ref = "exoplayer" }
+
+[plugins]
+androidApplication = { id = "com.android.application", version.ref = "agp" }
+jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+googleServices = { id = "com.google.gms.google-services", version.ref = "googleServices" }
+

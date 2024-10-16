@@ -1,0 +1,78 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="@dimen/_10sdp">
+
+    <ImageView
+        android:id="@+id/ivImage"
+        android:layout_width="@dimen/_75sdp"
+        android:layout_height="@dimen/_75sdp"
+        android:layout_gravity="center"
+        android:scaleType="centerCrop"
+        android:layout_marginTop="@dimen/_15sdp"
+        />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/jost_bold"
+        android:textSize="@dimen/_19sdp"
+        android:textColor="@color/black"
+        android:layout_marginStart="@dimen/_30sdp"
+        android:layout_marginLeft="@dimen/_30sdp"
+        android:layout_marginRight="@dimen/_30sdp"
+        android:layout_marginEnd="@dimen/_30sdp"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:textAlignment="center"
+        />
+
+    <TextView
+        android:id="@+id/tvContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/jost_bold"
+        android:textSize="@dimen/_12sdp"
+        android:textColor="@color/grey_700"
+        android:layout_marginStart="@dimen/_30sdp"
+        android:layout_marginLeft="@dimen/_30sdp"
+        android:layout_marginRight="@dimen/_30sdp"
+        android:layout_marginEnd="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:textAlignment="center"
+        />
+
+    <TextView
+        android:id="@+id/btnDone"
+        android:layout_width="@dimen/_60sdp"
+        android:layout_height="@dimen/_35sdp"
+        android:layout_gravity="center"
+        android:text="Done"
+        android:textSize="@dimen/_16sdp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/jost_semibold"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:gravity="center_vertical|center_horizontal"
+        android:background="@drawable/bg_rounded_button"
+        />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:gravity="center_vertical|center_horizontal"
+        android:visibility="gone"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/loader"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_15sdp"/>
+
+</LinearLayout>
