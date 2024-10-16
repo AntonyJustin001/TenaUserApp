@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/item_background"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="@dimen/_14sdp"
+    app:cardElevation="@dimen/_3sdp"
+    android:layout_marginVertical="@dimen/_3sdp"
+    android:layout_marginHorizontal="@dimen/_10sdp"
+    android:id="@+id/productHolder">
+
+    <RelativeLayout
+        android:id="@+id/notificationsHolder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:id="@+id/IvNotification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginHorizontal="@dimen/_5sdp"
+            android:padding="@dimen/_5sdp"
+            android:background="@drawable/bg_rounded_white"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="@dimen/_26sdp"
+                android:layout_height="@dimen/_26sdp"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:src="@drawable/ic_notifications" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_5sdp"
+            android:layout_toRightOf="@+id/IvNotification"
+            android:layout_centerVertical="true"
+            android:layout_marginVertical="@dimen/_5sdp"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/jost_bold"
+                android:text="Great Offer"
+                android:textAlignment="textStart"
+                android:layout_gravity="start"
+                android:textColor="@color/black"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textSize="@dimen/_13sdp" />
+
+            <TextView
+                android:id="@+id/tvContent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/jost_semibold"
+                android:text="This is Message Description"
+                android:textAlignment="textStart"
+                android:layout_gravity="start"
+                android:textColor="@color/black"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textSize="@dimen/_12sdp" />
+
+            <TextView
+                android:id="@+id/tvDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/jost_regular"
+                android:text="2 hours ago"
+                android:textAlignment="textStart"
+                android:layout_gravity="start"
+                android:textColor="@color/black"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textSize="@dimen/_11sdp" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/backgroundColor">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvUserName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        android:layout_marginRight="@dimen/_15sdp"
+                        android:fontFamily="@font/jost_bold"
+                        android:text="Hi, Alex"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_23sdp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        android:layout_marginRight="@dimen/_15sdp"
+                        android:fontFamily="@font/jost_medium"
+                        android:text="Welcome to the Tena Health Care"
+                        android:textColor="@color/grey_700"
+                        android:textSize="@dimen/_12sdp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:layout_marginRight="@dimen/_15sdp"
+                    android:layout_weight="1"
+                    android:gravity="right">
+
+                    <ImageView
+                        android:id="@+id/ivProfile"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ic_profile" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_43sdp"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginLeft="@dimen/_15sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:layout_marginRight="@dimen/_15sdp"
+                android:background="@drawable/bg_rounded_search"
+                android:elevation="@dimen/_6sdp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivSearch"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:src="@drawable/ic_search" />
+
+                <EditText
+                    android:id="@+id/etSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:fontFamily="@font/jost_bold"
+                    android:hint="@string/search_for"
+                    android:inputType="text"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/grey_600"
+                    android:layout_toRightOf="@+id/ivSearch"
+                    android:textSize="@dimen/_13sdp" />
+
+                <ImageView
+                    android:id="@+id/ivClear"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_alignParentEnd="true"
+                    android:visibility="gone"
+                    android:src="@drawable/ic_clear_icon" />
+
+            </RelativeLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcSearchedProduct"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:visibility="gone"
+                />
+            <LinearLayout
+                android:id="@+id/layoutHomeContent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <!-- Rounded container for the banner -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:layout_marginRight="@dimen/_15sdp"
+                    app:cardBackgroundColor="@android:color/white"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="4dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_140sdp"
+                        android:orientation="vertical">
+
+                        <androidx.viewpager2.widget.ViewPager2
+                            android:id="@+id/viewPager"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_140sdp"
+                            android:layout_gravity="center" />
+
+                        <LinearLayout
+                            android:id="@+id/dotsLayout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginBottom="@dimen/_15sdp"
+                            android:orientation="horizontal" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:layout_marginRight="@dimen/_15sdp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:fontFamily="@font/jost_semibold"
+                        android:text="@string/popular_products"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_16sdp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/jost_extrabold"
+                            android:text="@string/see_all"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/_12sdp" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal|center_vertical"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:src="@drawable/ic_right" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rcPopularProducts"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:fitsSystemWindows="true"
+                    android:orientation="vertical" />
+
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/item_background"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/_14sdp"
+                    app:cardElevation="@dimen/_3sdp"
+                    android:layout_marginVertical="@dimen/_10sdp"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:id="@+id/contentHolder1">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_80sdp"
+                            app:cardCornerRadius="@dimen/_10sdp"
+                            android:elevation="@dimen/_10sdp"
+                            android:background="@drawable/bg_rounded_image"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_marginStart="@dimen/_13sdp"
+                            android:layout_marginLeft="@dimen/_13sdp"
+                            android:layout_marginRight="@dimen/_13sdp"
+                            android:layout_marginEnd="@dimen/_13sdp">
+
+                            <ImageView
+                                android:id="@+id/ivContent1"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/content1"
+                                android:background="@color/white"
+                                android:scaleType="centerCrop" />
+                        </androidx.cardview.widget.CardView>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <TextView
+                                android:id="@+id/tvContentTitle1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Embrace the Best"
+                                android:fontFamily="@font/jost_bold"
+                                android:textSize="@dimen/_12sdp"
+                                android:textColor="@color/black"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:layout_marginStart="@dimen/_10sdp"
+                                android:layout_marginLeft="@dimen/_10sdp"
+                                android:layout_marginRight="@dimen/_10sdp"
+                                android:layout_marginEnd="@dimen/_10sdp"
+                                />
+                            <TextView
+                                android:id="@+id/tvContentDescription1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text = "Tena Healthcare's Signature Collection of Sanitary Pads offers unmatched comfort and reliability. Experience sophistication and elegance in feminine care, raising the bar for everyday confidence."
+                                android:fontFamily="@font/jost_regular"
+                                android:textSize="@dimen/_10sdp"
+                                android:textColor="@color/grey_800"
+                                android:layout_marginStart="@dimen/_10sdp"
+                                android:layout_marginLeft="@dimen/_10sdp"
+                                android:layout_marginRight="@dimen/_10sdp"
+                                android:layout_marginEnd="@dimen/_10sdp"
+                                android:layout_marginBottom="@dimen/_10sdp"
+                                />
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/item_background"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/_14sdp"
+                    app:cardElevation="@dimen/_3sdp"
+                    android:layout_marginVertical="@dimen/_10sdp"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:id="@+id/contentHolder2">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_80sdp"
+                            app:cardCornerRadius="@dimen/_10sdp"
+                            android:elevation="@dimen/_10sdp"
+                            android:background="@drawable/bg_rounded_image"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_marginStart="@dimen/_13sdp"
+                            android:layout_marginLeft="@dimen/_13sdp"
+                            android:layout_marginRight="@dimen/_13sdp"
+                            android:layout_marginEnd="@dimen/_13sdp">
+
+                            <ImageView
+                                android:id="@+id/ivContent2"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/content2"
+                                android:background="@color/white"
+                                android:scaleType="centerCrop" />
+                        </androidx.cardview.widget.CardView>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <TextView
+                                android:id="@+id/tvContentTitle2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Feel Fresh, Stay Confident"
+                                android:fontFamily="@font/jost_bold"
+                                android:textSize="@dimen/_12sdp"
+                                android:textColor="@color/black"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:layout_marginStart="@dimen/_10sdp"
+                                android:layout_marginLeft="@dimen/_10sdp"
+                                android:layout_marginRight="@dimen/_10sdp"
+                                android:layout_marginEnd="@dimen/_10sdp"
+                                />
+                            <TextView
+                                android:id="@+id/tvContentDescription2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text = "Explore Tena Healthcare's Modern Feminine Comfort. Our innovative solutions offer unmatched freshness and revitalization, empowering you to conquer each day with assurance and ease."
+                                android:fontFamily="@font/jost_regular"
+                                android:textSize="@dimen/_10sdp"
+                                android:textColor="@color/grey_800"
+                                android:layout_marginStart="@dimen/_10sdp"
+                                android:layout_marginLeft="@dimen/_10sdp"
+                                android:layout_marginRight="@dimen/_10sdp"
+                                android:layout_marginEnd="@dimen/_10sdp"
+                                android:layout_marginBottom="@dimen/_10sdp"
+                                />
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/item_background"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/_14sdp"
+                    app:cardElevation="@dimen/_3sdp"
+                    android:layout_marginVertical="@dimen/_10sdp"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:id="@+id/contentHolder3">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_80sdp"
+                            app:cardCornerRadius="@dimen/_10sdp"
+                            android:elevation="@dimen/_10sdp"
+                            android:background="@drawable/bg_rounded_image"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_marginStart="@dimen/_13sdp"
+                            android:layout_marginLeft="@dimen/_13sdp"
+                            android:layout_marginRight="@dimen/_13sdp"
+                            android:layout_marginEnd="@dimen/_13sdp">
+
+                            <ImageView
+                                android:id="@+id/ivContent3"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/content3"
+                                android:background="@color/white"
+                                android:scaleType="centerCrop" />
+                        </androidx.cardview.widget.CardView>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <TextView
+                                android:id="@+id/tvContentTitle3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Elevate Your Everyday"
+                                android:fontFamily="@font/jost_bold"
+                                android:textSize="@dimen/_12sdp"
+                                android:textColor="@color/black"
+                                android:layout_marginTop="@dimen/_10sdp"
+                                android:layout_marginStart="@dimen/_10sdp"
+                                android:layout_marginLeft="@dimen/_10sdp"
+                                android:layout_marginRight="@dimen/_10sdp"
+                                android:layout_marginEnd="@dimen/_10sdp"
+                                />
+                            <TextView
+                                android:id="@+id/tvContentDescription3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text = "Explore Tena Healthcare's Modern Feminine Comfort. Our innovative solutions offer unmatched freshness and revitalization, empowering you to conquer each day with assurance and ease."
+                                android:fontFamily="@font/jost_regular"
+                                android:textSize="@dimen/_10sdp"
+                                android:textColor="@color/grey_800"
+                                android:layout_marginStart="@dimen/_10sdp"
+                                android:layout_marginLeft="@dimen/_10sdp"
+                                android:layout_marginRight="@dimen/_10sdp"
+                                android:layout_marginEnd="@dimen/_10sdp"
+                                android:layout_marginBottom="@dimen/_10sdp"
+                                />
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/backgroundColor"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/titleBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_3sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginLeft="@dimen/_10sdp"
+        android:layout_marginRight="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_3sdp"
+        android:layout_alignParentTop="true">
+
+        <LinearLayout
+            android:id="@+id/backBtnHolder"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/_7sdp"
+            android:background="@drawable/bg_rounded_grey_100"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="@dimen/_16sdp"
+                android:layout_height="@dimen/_16sdp"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:src="@drawable/ic_back_icon" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:fontFamily="@font/jost_medium"
+            android:text="My Address"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_16sdp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/backBtnHolder"
+            />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/homeScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:visibility="visible"
+        android:layout_below="@+id/titleBar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="@dimen/_7sdp"
+                android:elevation="@dimen/_5sdp"
+                app:cardBackgroundColor="#F6F8FA"
+                android:layout_marginVertical="@dimen/_10sdp"
+                android:layout_marginHorizontal="@dimen/_10sdp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:id="@+id/homeAddressHolder"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginVertical="@dimen/_3sdp"
+                        android:visibility="visible">
+
+                        <LinearLayout
+                            android:id="@+id/ivHomeAddress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginHorizontal="@dimen/_5sdp"
+                            android:padding="@dimen/_5sdp"
+                            android:background="@drawable/bg_rounded_white"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:layout_width="@dimen/_23sdp"
+                                android:layout_height="@dimen/_23sdp"
+                                android:layout_gravity="center_horizontal|center_vertical"
+                                android:src="@drawable/ic_home" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_5sdp"
+                            android:layout_toRightOf="@+id/ivHomeAddress"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:layout_marginRight="@dimen/_5sdp"
+                            android:orientation="vertical"
+                            android:gravity="center">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/jost_medium"
+                                    android:text="HOME"
+                                    android:layout_alignParentStart="true"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_11sdp" />
+
+                                <ImageView
+                                    android:id="@+id/ivEditHome"
+                                    android:layout_width="@dimen/_20sdp"
+                                    android:layout_height="@dimen/_20sdp"
+                                    android:layout_gravity="center_horizontal|center_vertical"
+                                    android:src="@drawable/vd_edit_black"
+                                    android:layout_toStartOf="@+id/ivRemoveHome"
+                                    android:layout_marginHorizontal="@dimen/_5sdp"
+                                    android:visibility="visible"
+                                    />
+
+                                <ImageView
+                                    android:id="@+id/ivRemoveHome"
+                                    android:layout_width="@dimen/_20sdp"
+                                    android:layout_height="@dimen/_20sdp"
+                                    android:layout_gravity="center_horizontal|center_vertical"
+                                    android:src="@drawable/ic_delete"
+                                    android:layout_alignParentEnd="true"
+                                    android:visibility="visible"
+                                    />
+
+                                <ImageView
+                                    android:id="@+id/ivConfirmHomeAddress"
+                                    android:layout_width="@dimen/_22sdp"
+                                    android:layout_height="@dimen/_22sdp"
+                                    android:layout_gravity="center_horizontal|center_vertical"
+                                    android:src="@drawable/ic_clear_icon"
+                                    android:layout_toStartOf="@+id/ivClearHomeAddress"
+                                    android:layout_marginHorizontal="@dimen/_5sdp"
+                                    android:visibility="gone"
+                                    />
+
+                                <ImageView
+                                    android:id="@+id/ivClearHomeAddress"
+                                    android:layout_width="@dimen/_21sdp"
+                                    android:layout_height="@dimen/_21sdp"
+                                    android:layout_gravity="center_horizontal|center_vertical"
+                                    android:src="@drawable/ic_confirm_icon"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_marginTop="@dimen/_2sdp"
+                                    android:visibility="gone"
+                                    />
+
+                            </RelativeLayout>
+
+                            <TextView
+                                android:id="@+id/tvHomeAddress"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/jost_regular"
+                                android:text="2464 Royal Ln. Mesa, New Jersey 45463, New Jersey 45463"
+                                android:textAlignment="textStart"
+                                android:maxLines="2"
+                                android:layout_gravity="start"
+                                android:visibility="visible"
+                                android:textColor="@color/grey_700"
+                                android:textSize="@dimen/_12sdp" />
+
+                            <LinearLayout
+                                android:id="@+id/etHomeAddressHolder"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_35sdp"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:layout_marginVertical="@dimen/_5sdp"
+                                android:background="@drawable/bg_edittext"
+                                android:gravity="center"
+                                android:visibility="gone"
+                                android:orientation="horizontal">
+
+                                <EditText
+                                    android:id="@+id/etHomeAddress"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@null"
+                                    android:fontFamily="@font/jost_semibold"
+                                    android:hint="Home Address"
+                                    android:inputType="text"
+                                    android:layout_marginHorizontal="@dimen/_10sdp"
+                                    android:textColor="@color/black"
+                                    android:textColorHint="@color/grey_800"
+                                    android:textSize="@dimen/_13sdp" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="@dimen/_7sdp"
+                android:elevation="@dimen/_5sdp"
+                app:cardBackgroundColor="#F6F8FA"
+                android:layout_marginVertical="@dimen/_10sdp"
+                android:layout_marginHorizontal="@dimen/_10sdp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:id="@+id/workAddressHolder"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginVertical="@dimen/_3sdp"
+                        android:visibility="visible">
+
+                        <LinearLayout
+                            android:id="@+id/ivWorkAddress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginHorizontal="@dimen/_5sdp"
+                            android:padding="@dimen/_5sdp"
+                            android:background="@drawable/bg_rounded_white"
+                            android:gravity="center">
+
+                            <ImageView
+                                android:layout_width="@dimen/_23sdp"
+                                android:layout_height="@dimen/_23sdp"
+                                android:layout_gravity="center_horizontal|center_vertical"
+                                android:src="@drawable/ic_work" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_5sdp"
+                            android:layout_toRightOf="@+id/ivWorkAddress"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:layout_marginRight="@dimen/_5sdp"
+                            android:orientation="vertical"
+                            android:gravity="center">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/jost_medium"
+                                    android:text="WORK"
+                                    android:layout_alignParentStart="true"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_11sdp" />
+
+                                <ImageView
+                                    android:id="@+id/ivEditWork"
+                                    android:layout_width="@dimen/_20sdp"
+                                    android:layout_height="@dimen/_20sdp"
+                                    android:layout_gravity="center_horizontal|center_vertical"
+                                    android:src="@drawable/vd_edit_black"
+                                    android:layout_toStartOf="@+id/ivRemoveWork"
+                                    android:layout_marginHorizontal="@dimen/_5sdp"
+                                    android:visibility="visible"
+                                    />
+
+                                <ImageView
+                                    android:id="@+id/ivRemoveWork"
+                                    android:layout_width="@dimen/_20sdp"
+                                    android:layout_height="@dimen/_20sdp"
+                                    android:layout_gravity="center_horizontal|center_vertical"
+                                    android:src="@drawable/ic_delete"
+                                    android:layout_alignParentEnd="true"
+                                    android:visibility="visible"
+                                    />
+
+                                <ImageView
+                                    android:id="@+id/ivConfirmWorkAddress"
+                                    android:layout_width="@dimen/_25sdp"
+                                    android:layout_height="@dimen/_25sdp"
+                                    android:layout_gravity="center_horizontal|center_vertical"
+                                    android:src="@drawable/ic_clear_icon"
+                                    android:layout_toStartOf="@+id/ivClearWorkAddress"
+                                    android:layout_marginHorizontal="@dimen/_5sdp"
+                                    android:visibility="gone"
+                                    />
+
+                                <ImageView
+                                    android:id="@+id/ivClearWorkAddress"
+                                    android:layout_width="@dimen/_21sdp"
+                                    android:layout_height="@dimen/_21sdp"
+                                    android:layout_gravity="center_horizontal|center_vertical"
+                                    android:src="@drawable/ic_confirm_icon"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_marginTop="@dimen/_2sdp"
+                                    android:visibility="gone"
+                                    />
+
+                            </RelativeLayout>
+
+                            <TextView
+                                android:id="@+id/tvWorkAddress"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/jost_regular"
+                                android:text="2464 Royal Ln. Mesa, New Jersey 45463, New Jersey 45463"
+                                android:textAlignment="textStart"
+                                android:maxLines="2"
+                                android:layout_gravity="start"
+                                android:visibility="visible"
+                                android:textColor="@color/grey_700"
+                                android:textSize="@dimen/_12sdp" />
+
+                            <LinearLayout
+                                android:id="@+id/etWorkAddressHolder"
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_35sdp"
+                                android:layout_marginTop="@dimen/_5sdp"
+                                android:layout_marginVertical="@dimen/_5sdp"
+                                android:background="@drawable/bg_edittext"
+                                android:gravity="center"
+                                android:visibility="gone"
+                                android:orientation="horizontal">
+
+                                <EditText
+                                    android:id="@+id/etWorkAddress"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:background="@null"
+                                    android:fontFamily="@font/jost_semibold"
+                                    android:hint="Work Address"
+                                    android:inputType="text"
+                                    android:layout_marginHorizontal="@dimen/_10sdp"
+                                    android:textColor="@color/black"
+                                    android:textColorHint="@color/grey_800"
+                                    android:textSize="@dimen/_13sdp" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/progressBar"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_100sdp"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/loader" />
+
+</RelativeLayout>

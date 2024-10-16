@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Tena Health Care</string>
+    <string name="getting_started">Getting Started.!</string>
+    <string name="lets_signIn">Let\'s Sign In.!</string>
+    <string name="login_words">Login to Your Account to Continue your Courses...</string>
+    <string name="signUp_words">Create an Account to Continue your allCourses</string>
+    <string name="email">Email</string>
+    <string name="pwd">Password</string>
+    <string name="name">Name</string>
+    <string name="mobile">Mobile</string>
+    <string name="forget_pwd">Forget Password? </string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="dont_have_ac_sign_up">Don\'t have an account? SIGNUP</string>
+    <string name="already_have_ac_sign_in">Already have an account? SIGNIN</string>
+    <string name="congratulations">Congratulations</string>
+    <string name="success_msg">Your Account is Ready to Use. You will be redirected to the Home Page in a Few Seconds.</string>
+    <string name="home_screen_words">What Would you like to buy Today? Search Below.</string>
+    <string name="search_for">Search for...</string>
+    <string name="categories">Categories</string>
+    <string name="see_all">SEE ALL</string>
+    <string name="popular_products">Popular Products</string>
+    <string name="error">Error</string>
+    <string name="no_network_avilable">No Network Available Please Try Again Later</string>
+
+</resources>

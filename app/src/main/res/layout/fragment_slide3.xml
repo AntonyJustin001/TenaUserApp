@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor">
+
+    <ImageView
+        android:id="@+id/imageSlide"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_200sdp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/health_image_3" />
+
+    <TextView
+        android:id="@+id/titleSlide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/imageSlide"
+        android:layout_marginTop="@dimen/_25sdp"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginLeft="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:layout_marginRight="@dimen/_15sdp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="Wellness Delivered"
+        android:fontFamily="@font/jost_bold"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/_20sdp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/descriptionSlide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/titleSlide"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginLeft="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:layout_marginRight="@dimen/_15sdp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="Get the Finest Health Products Delivered to Your Doorstep with Expert Recommendations.!"
+        android:fontFamily="@font/jost_medium"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/_16sdp"/>
+
+</RelativeLayout>
