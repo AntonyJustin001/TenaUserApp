@@ -35,13 +35,14 @@
                     android:gravity="center">
 
                     <ImageView
-                        android:layout_width="@dimen/_20sdp"
-                        android:layout_height="@dimen/_20sdp"
+                        android:layout_width="@dimen/_19sdp"
+                        android:layout_height="@dimen/_19sdp"
                         android:layout_gravity="center_horizontal|center_vertical"
                         android:src="@drawable/ic_person_icon" />
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tvCustomerName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/IvCustomerName"
@@ -82,6 +83,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tvAddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/IvCustomerLocation"
@@ -122,6 +124,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tvMobile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/IvCustomerMobile"
@@ -176,7 +179,43 @@
 
             </RelativeLayout>
 
+            <RelativeLayout
+                android:id="@+id/orderStatusHolder"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:orientation="horizontal"
+                android:visibility="visible">
 
+                <LinearLayout
+                    android:id="@+id/IvOrderStatus"
+                    android:layout_width="@dimen/_35sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_centerVertical="true"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="@dimen/_23sdp"
+                        android:layout_height="@dimen/_23sdp"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:src="@drawable/ic_orders" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvOrderStatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/IvOrderStatus"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:layout_marginRight="@dimen/_20sdp"
+                    android:fontFamily="@font/jost_regular"
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_13sdp" />
+
+            </RelativeLayout>
 
         </LinearLayout>
 
@@ -240,6 +279,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:visibility="gone"
                 android:layout_marginTop="@dimen/_7sdp">
                 <TextView
                     android:layout_width="wrap_content"
@@ -267,6 +307,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:visibility="gone"
                 android:layout_marginTop="@dimen/_7sdp">
                 <TextView
                     android:layout_width="wrap_content"

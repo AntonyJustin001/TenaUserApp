@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/item_background"
     app:cardBackgroundColor="@color/white"
     app:cardCornerRadius="@dimen/_14sdp"
@@ -42,7 +41,7 @@
                     android:fontFamily="@font/jost_bold"
                     android:paddingVertical="@dimen/_2sdp"
                     android:text="Order Id"
-                    android:textAlignment="center"
+                    android:textAlignment="textStart"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
@@ -53,7 +52,7 @@
                     android:layout_marginStart="@dimen/_5sdp"
                     android:fontFamily="@font/jost_regular"
                     android:paddingVertical="@dimen/_2sdp"
-                    android:textAlignment="center"
+                    android:textAlignment="textStart"
                     android:textColor="@color/black"
                     android:textSize="14sp"
                     android:text=""
@@ -77,19 +76,19 @@
                     android:layout_marginStart="@dimen/_5sdp"
                     android:fontFamily="@font/jost_bold"
                     android:paddingVertical="@dimen/_2sdp"
-                    android:text="Order Placed"
-                    android:textAlignment="center"
+                    android:text="Total Price"
+                    android:textAlignment="textStart"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/tvOrderPlacedDate"
+                    android:id="@+id/tvOrderTotal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_5sdp"
                     android:fontFamily="@font/jost_regular"
                     android:paddingVertical="@dimen/_2sdp"
-                    android:textAlignment="center"
+                    android:textAlignment="textStart"
                     android:textColor="@color/black"
                     android:textSize="14sp"
                     android:text=""
@@ -110,6 +109,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:orientation="vertical"
+                android:visibility="gone"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@+id/llTotalContainer"
                 app:layout_constraintTop_toTopOf="parent">
@@ -120,8 +120,8 @@
                     android:layout_marginStart="@dimen/_5sdp"
                     android:fontFamily="@font/jost_bold"
                     android:paddingVertical="@dimen/_2sdp"
-                    android:text="Total Qty"
-                    android:textAlignment="center"
+                    android:text="Order Status"
+                    android:textAlignment="textStart"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
@@ -132,7 +132,7 @@
                     android:layout_marginStart="@dimen/_5sdp"
                     android:fontFamily="@font/jost_regular"
                     android:paddingVertical="@dimen/_2sdp"
-                    android:textAlignment="center"
+                    android:textAlignment="textStart"
                     android:textColor="@color/black"
                     android:textSize="14sp"
                     android:text=""
@@ -156,19 +156,19 @@
                     android:layout_marginStart="@dimen/_5sdp"
                     android:fontFamily="@font/jost_bold"
                     android:paddingVertical="@dimen/_2sdp"
-                    android:text="Total"
-                    android:textAlignment="center"
+                    android:text="Order Status"
+                    android:textAlignment="textStart"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/tvOrderTotal"
+                    android:id="@+id/tvOrderStatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_5sdp"
                     android:fontFamily="@font/jost_regular"
                     android:paddingVertical="@dimen/_2sdp"
-                    android:textAlignment="center"
+                    android:textAlignment="textStart"
                     android:textColor="@color/black"
                     android:textSize="14sp"
                     android:text=""
@@ -190,6 +190,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:orientation="vertical"
+                android:visibility="gone"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -200,7 +201,7 @@
                     android:fontFamily="@font/jost_bold"
                     android:paddingVertical="@dimen/_2sdp"
                     android:text="Products"
-                    android:textAlignment="center"
+                    android:textAlignment="textStart"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
@@ -211,7 +212,7 @@
                     android:layout_marginStart="@dimen/_5sdp"
                     android:fontFamily="@font/jost_regular"
                     android:paddingVertical="@dimen/_2sdp"
-                    android:textAlignment="center"
+                    android:textAlignment="textStart"
                     android:textColor="@color/black"
                     android:textSize="14sp"
                     android:text=""

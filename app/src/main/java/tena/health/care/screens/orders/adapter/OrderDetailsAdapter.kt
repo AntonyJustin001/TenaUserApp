@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
@@ -52,12 +53,20 @@ class OrderDetailsAdapter(context: Context, activity:FragmentActivity /*,checkOu
         val tvTax: TextView = itemView.findViewById(R.id.tvTax)
         val tvTotal: TextView = itemView.findViewById(R.id.tvTotal)
         val tvSelectedPayment: TextView = itemView.findViewById(R.id.tvSelectedPayment)
+        val tvCustomerName: TextView = itemView.findViewById(R.id.tvCustomerName)
+        val tvAddress: TextView = itemView.findViewById(R.id.tvAddress)
+        val tvMobile: TextView = itemView.findViewById(R.id.tvMobile)
+        val tvOrderStatus: TextView = itemView.findViewById(R.id.tvOrderStatus)
 
         fun bind(order: Order) {
-            tvSubtotal.text = "${order.subTotal}"
+            tvCustomerName.text = order.customerName
+            tvMobile.text = order.customerMobile
+            tvAddress.text = order.shippingAddress
+            tvOrderStatus.text = order.orderStatus
+            tvSubtotal.text = "${order.currency} ${order.subTotal}"
             tvTax.text = "${order.tax}"
             tvDevliveryCharge.text = "${order.deliveryCharge}"
-            tvTotal.text = "${order.total}"
+            tvTotal.text = "${order.currency} ${order.total}"
             tvSelectedPayment.text = "${order.selectedPayment}"
             rcOrderedProductList.layoutManager = LinearLayoutManager(context)
             rcOrderedProductList.adapter = OrderProductsAdapter(context, activity,order.cardItems)

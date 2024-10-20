@@ -48,7 +48,7 @@ class OrdersListAdapter(val context: Context, activity: FragmentActivity, privat
 
     inner class ItemViewHolder(itemView: View, private val context: Context) : RecyclerView.ViewHolder(itemView) {
         private val tvOrderId: TextView = itemView.findViewById(R.id.tvOrderId)
-        private val tvOrderPlacedDate: TextView = itemView.findViewById(R.id.tvOrderPlacedDate)
+        private val tvOrderStatus: TextView = itemView.findViewById(R.id.tvOrderStatus)
         private val tvOrderQty: TextView = itemView.findViewById(R.id.tvQty)
         private val tvOrderTotalPrice: TextView = itemView.findViewById(R.id.tvOrderTotal)
         private val orderHolder: LinearLayout = itemView.findViewById(R.id.orderHolder)
@@ -74,9 +74,9 @@ class OrdersListAdapter(val context: Context, activity: FragmentActivity, privat
             totalPrice = totalPrice.copy(total = Total)
 
             tvOrderId.text = order.orderId
-            tvOrderPlacedDate.text = order.orderPlacedDate
+            tvOrderStatus.text = order.orderStatus
             tvOrderQty.text = "${TotalQty}"
-            tvOrderTotalPrice.text = "${totalPrice.total}"
+            tvOrderTotalPrice.text = "${order.currency} ${totalPrice.subTotal}"
 
             orderHolder.setOnClickListener {
                 Log.e("Test","Order Id ${order.orderId}")

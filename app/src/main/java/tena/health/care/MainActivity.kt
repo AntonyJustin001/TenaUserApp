@@ -104,18 +104,9 @@ class MainActivity : AppCompatActivity(), ActivityActionListener {
                             cartItems.add(cartItem)
                         }
                     }
-
                     tvCartQty.text = "${cartItems.size}"
-//                if(cartItems.size > 0) {
-//                    if(currentCartVisibility) {
-//                        btnCart.visibility = View.VISIBLE
-//                        tvCartQty.text = "${cartItems.size}"
-//                    }
-//                } else {
-//                    btnCart.visibility = View.GONE
-//                }
                     // Now cartItems holds the updated cart items
-                    Log.e("Firestore", "Real-time cart items: $cartItems")
+                    Log.e("Test", "Real-time cart items: $cartItems")
                 }
             }
         }

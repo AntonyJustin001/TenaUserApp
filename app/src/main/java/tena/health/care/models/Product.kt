@@ -5,5 +5,8 @@ data class Product(
     val productTitle: String = "",
     val productDescription: String = "",
     val price: Double = 0.0,
-    val imageUrl: String = ""
+    val currency: String = "INR",
+    val imageUrl: String = "",
+    val productStock: Int = 0,
+    val productSize: String = "",
 )

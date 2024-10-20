@@ -192,9 +192,9 @@ class SignUpScreen : Fragment() {
     }
 
     fun clearUI() {
-        etEmail.setText("")
+        //etEmail.setText("")
         etPassword.setText("")
-        etName.setText("")
+        //etName.setText("")
     }
 
 }

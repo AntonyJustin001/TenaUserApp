@@ -29,6 +29,7 @@ class ProductDetailsScreen : Fragment() {
     private lateinit var tvProductTitle: TextView
     private lateinit var tvProductDescription: TextView
     private lateinit var tvProductPrice: TextView
+    private lateinit var tvProductSize: TextView
     private lateinit var layoutAdd:LinearLayout
     private lateinit var layoutRemove:LinearLayout
     private lateinit var tvProductQuantity:TextView
@@ -73,17 +74,14 @@ class ProductDetailsScreen : Fragment() {
         tvProductDescription = view.findViewById(R.id.tvProductDescription)
         tvProductPrice = view.findViewById(R.id.tvProductPrice)
         tvProductQuantity = view.findViewById(R.id.tvProductQuantity)
+        tvProductSize = view.findViewById(R.id.tvProductSize)
         val userId = FirebaseAuth.getInstance().currentUser?.uid // Assuming you're using FirebaseAuth
         cartManager = CartManager(db,userId?:"")
-
-
         activityActionListener?.showOrHideCart(false)
-
         backBtnHolder = view.findViewById(R.id.backBtnHolder)
         backBtnHolder.setOnClickListener {
             requireActivity().supportFragmentManager.popBackStack()
         }
-
         btnCart = view.findViewById(R.id.btnCart)
         btnCart.setOnClickListener {
             cartManager.addToCart(productId?:"", name = tvProductTitle.text.toString(),productImageUrl, tvProductQuantity.text.toString().toInt(),
@@ -128,12 +126,15 @@ class ProductDetailsScreen : Fragment() {
                 val productTitle = snapshot.getString("productTitle")
                 val productDescription = snapshot.getString("productDescription")
                 val price = snapshot.getDouble("price")
+                val currency = snapshot.getString("currency")
+                val productSize = snapshot.getString("productSize")
                 productImageUrl = snapshot.getString("imageUrl")?:""
                 loadImageFromUrl(requireContext(), productImageUrl?:"", ivProductImage)
                 tvProductTitle.text = productTitle?:""
                 tvProductDescription.text = productDescription?:""
                 productPrice = price?:0.0
-                tvProductPrice.text = "INR $productPrice"
+                tvProductPrice.text = "${currency}  $productPrice"
+                tvProductSize.text = "${productSize?:""}"
 
                 // Update your UI with the product data
                 Log.e("Firestore", "productTitle: $productTitle, productDescription: $productDescription" +

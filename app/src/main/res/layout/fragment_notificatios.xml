@@ -60,6 +60,20 @@
         android:layout_below="@+id/titleBar"
         />
 
+    <TextView
+        android:id="@+id/tvEmptyNotifications"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:fontFamily="@font/jost_semibold"
+        android:text="There are no Notifications Found"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_15sdp"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        />
+
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/progressBar"
         android:layout_width="@dimen/_100sdp"

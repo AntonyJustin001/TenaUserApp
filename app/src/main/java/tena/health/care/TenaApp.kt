@@ -19,9 +19,6 @@ class TenaApp: Application() {
         OneSignal.setNotificationOpenedHandler { result ->
             val actionId = result.action.actionId
             val data = result.notification.additionalData
-
-            // Handle the notification click action here
-            // Example: Open a specific activity when a notification is clicked
             val intent = Intent(applicationContext, MainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_REORDER_TO_FRONT or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
@@ -30,9 +27,7 @@ class TenaApp: Application() {
         // Set notification received handler (optional)
         OneSignal.setNotificationWillShowInForegroundHandler { notificationReceivedEvent ->
             val notification = notificationReceivedEvent.notification
-
-            // You can access the notification data and decide to display it or handle it custom
-            notificationReceivedEvent.complete(notification) // Show the notification in the foreground
+            notificationReceivedEvent.complete(notification)
         }
 
     }

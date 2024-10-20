@@ -58,13 +58,13 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
         val current = LocalDateTime.now()
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
-        storeNotification(
-            Notification(
-                notificationId = UUID.randomUUID().toString(),
-                notificationTitle = "$title",
-                notificationMessage = "$messageBody",
-                receivedDate = current.format(formatter),
-            ))
+//        storeNotification(
+//            Notification(
+//                notificationId = UUID.randomUUID().toString(),
+//                notificationTitle = "$title",
+//                notificationMessage = "$messageBody",
+//                receivedDate = current.format(formatter),
+//            ))
 
     }
 

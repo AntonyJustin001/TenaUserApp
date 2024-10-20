@@ -43,7 +43,7 @@ class PopularProductAdapter(val context: Context,val activity: FragmentActivity,
         fun bind(product: Product) {
             tvProductTitle.text = product.productTitle
             tvProductDescription.text = product.productDescription
-            tvProductPrice.text = "INR ${product.price}"
+            tvProductPrice.text = "${product.currency} ${product.price}"
             loadImageFromUrl(context, product.imageUrl, imageView)
             layoutAdd.setOnClickListener {
                 Log.e("Test","Layout Add Clicked")

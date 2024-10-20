@@ -40,6 +40,7 @@ import com.razorpay.*
 import org.json.JSONObject
 import tena.health.care.models.User
 import tena.health.care.utils.USER_DETAILS
+import tena.health.care.utils.loadImageFromUrl
 import tena.health.care.utils.prefs
 
 class CheckOutScreen : Fragment(), PaymentResultWithDataListener, ExternalWalletListener,
@@ -57,9 +58,9 @@ class CheckOutScreen : Fragment(), PaymentResultWithDataListener, ExternalWallet
     private lateinit var progressBar: LottieAnimationView
     lateinit var customDialog: CustomDialog
     var latestOrderId = ""
+    var userId = ""
+    var user:User? = null
     lateinit var cartManager: CartManager
-    //private lateinit var alertDialogBuilder: AlertDialog.Builder
-
     private var activityActionListener: ActivityActionListener? = null
 
     override fun onAttach(context: Context) {
@@ -81,8 +82,8 @@ class CheckOutScreen : Fragment(), PaymentResultWithDataListener, ExternalWallet
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        userId = FirebaseAuth.getInstance().currentUser?.uid?:""
         Checkout.preload(requireContext())
-
         db = FirebaseFirestore.getInstance()
         rcCheckoutList = view.findViewById(R.id.rcCheckOut)
         rcCheckoutList.layoutManager = LinearLayoutManager(context)
@@ -104,8 +105,13 @@ class CheckOutScreen : Fragment(), PaymentResultWithDataListener, ExternalWallet
                                 cardItems = cartItems.toList(),
                                 selectedPayment = selectedPayment,
                                 orderPlacedDate = getCurrentTime(),
-                                total = TotalCalculation().total.toString(),
-                                shippingAddress = selectedAddress
+                                total = TotalCalculation().subTotal.toString(),
+                                subTotal = TotalCalculation().subTotal.toString(),
+                                shippingAddress = selectedAddress,
+                                userId = userId,
+                                customerName = user?.name?:"",
+                                customerMobile = user?.mobileNo?:"",
+                                orderStatus = "Pending"
                             )
                         )
                     }
@@ -119,8 +125,7 @@ class CheckOutScreen : Fragment(), PaymentResultWithDataListener, ExternalWallet
 
         activityActionListener?.showOrHideCart(false)
 
-        val userId =
-            FirebaseAuth.getInstance().currentUser?.uid // Assuming you're using FirebaseAuth
+
         cartManager = CartManager(db, userId ?: "")
         cartRef = db.collection("users").document(userId ?: "").collection("cart")
         cartRef.addSnapshotListener { snapshots, e ->
@@ -153,6 +158,22 @@ class CheckOutScreen : Fragment(), PaymentResultWithDataListener, ExternalWallet
 
         orderRef = FirebaseFirestore.getInstance().collection("order")
         getLatestOrderId()
+
+
+        val userRef = db.collection("users")
+            .document(userId)
+        userRef.addSnapshotListener { snapshot, e ->
+            if (e != null) {
+                Log.w("Firestore", "Listen failed.", e)
+                return@addSnapshotListener
+            }
+
+            if (snapshot != null && snapshot.exists()) {
+                user = snapshot.toObject(User::class.java)
+            } else {
+                Log.e("Firestore", "Product data is null")
+            }
+        }
 
     }
 
@@ -251,12 +272,17 @@ class CheckOutScreen : Fragment(), PaymentResultWithDataListener, ExternalWallet
         try {
             placeOrder(
                 Order(
-                    orderId = if(latestOrderId != "") (latestOrderId.toInt()+1).toString() else "",
+                    orderId = if(latestOrderId != "") (latestOrderId.toInt()+1).toString() else "0",
                     cardItems = cartItems.toList(),
                     selectedPayment = selectedPayment,
                     orderPlacedDate = getCurrentTime(),
-                    total = TotalCalculation().total.toString(),
-                    shippingAddress = selectedAddress
+                    total = TotalCalculation().subTotal.toString(),
+                    subTotal = TotalCalculation().subTotal.toString(),
+                    shippingAddress = selectedAddress,
+                    userId = userId,
+                    customerName = user?.name?:"",
+                    customerMobile = user?.mobileNo?:"",
+                    orderStatus = "Pending"
                 )
             )
             Log.e("Test","Payment Successful : Payment ID: $p0\nPayment Data: ${p1?.data}")

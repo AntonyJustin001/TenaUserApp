@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -28,6 +29,7 @@ class NotificationListScreen : Fragment() {
     lateinit var notificationsRef: CollectionReference
     private var activityActionListener: ActivityActionListener? = null
     private lateinit var progressBar: LottieAnimationView
+    private lateinit var tvEmptyNotifications: TextView
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -58,14 +60,15 @@ class NotificationListScreen : Fragment() {
             requireActivity().supportFragmentManager.popBackStack()
         }
 
+        tvEmptyNotifications = view.findViewById(R.id.tvEmptyNotifications)
         activityActionListener?.showOrHideCart(false)
         progressBar = view.findViewById(R.id.progressBar)
 
         notificationsRef = db.collection("notifications")
-        progressBar.visibility  = View.VISIBLE
+        progressBar.visibility = View.VISIBLE
         notificationsRef.addSnapshotListener { snapshots, e ->
             if (e != null) {
-                progressBar.visibility  = View.GONE
+                progressBar.visibility = View.GONE
                 Log.w("Firestore", "Listen failed.", e)
                 return@addSnapshotListener
             }
@@ -78,17 +81,23 @@ class NotificationListScreen : Fragment() {
                 }
                 // Now cartItems holds the updated cart items
                 Log.e("Firestore", "CartScreen - Real-time notifications: $notifications")
-                if(isAdded) {
-                    if(notifications.size>0){
-                        rcNotifications.adapter = NotificationListAdapter(requireContext(),requireActivity(),notifications)
+                if (isAdded) {
+                    if (notifications.size > 0) {
+                        rcNotifications.visibility = View.VISIBLE
+                        tvEmptyNotifications.visibility = View.GONE
+                        rcNotifications.adapter = NotificationListAdapter(
+                            requireContext(),
+                            requireActivity(),
+                            notifications
+                        )
                     } else {
-
+                        rcNotifications.visibility = View.GONE
+                        tvEmptyNotifications.visibility = View.VISIBLE
                     }
+                    progressBar.visibility = View.GONE
                 }
-                progressBar.visibility  = View.GONE
             }
+
         }
-
     }
-
 }

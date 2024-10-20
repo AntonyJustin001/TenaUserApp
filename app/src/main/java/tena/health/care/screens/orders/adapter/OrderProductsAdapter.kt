@@ -57,7 +57,7 @@ class OrderProductsAdapter(val context: Context, activity: FragmentActivity, pri
         fun bind(product: CartItem) {
             loadImageFromUrl(context,product.productImageUrl,ivProductImage)
             tvProductTitle.text = product.name
-            tvProductPrice.text = "${product.price}"
+            tvProductPrice.text = "${product.currency} ${product.price}"
             tvProductQuantity.text = "${product.quantity}"
             removeCart.setOnClickListener {
                 Log.e("Test","RemoveCart Clicked")

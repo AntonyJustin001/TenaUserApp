@@ -29,7 +29,6 @@ class CartScreen : Fragment() {
     private lateinit var tvEmptyCart: TextView
     lateinit var db: FirebaseFirestore
     lateinit var cartRef: CollectionReference
-
     private var activityActionListener: ActivityActionListener? = null
 
     override fun onAttach(context: Context) {

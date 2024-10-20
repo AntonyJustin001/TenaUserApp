@@ -70,7 +70,7 @@ class CheckoutListAdapter(context: Context, activity:FragmentActivity,checkOutSc
             tvSubtotal.text = "${total.subTotal}"
             tvTax.text = "${total.tax}"
             tvDevliveryCharge.text = "${total.deliveryCharge}"
-            tvTotal.text = "${total.total}"
+            tvTotal.text = "${total.subTotal}"
 
             selectedPayment.setOnCheckedChangeListener { group, checkedId ->
                 val radioButton: RadioButton = itemView.findViewById(checkedId)
