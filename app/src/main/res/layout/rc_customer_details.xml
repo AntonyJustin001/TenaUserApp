@@ -19,14 +19,14 @@
             android:orientation="vertical">
 
             <RelativeLayout
-                android:id="@+id/custmerNameHolder"
+                android:id="@+id/offlineCustmerNameHolder"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
                 android:orientation="horizontal"
                 android:visibility="visible">
 
                 <LinearLayout
-                    android:id="@+id/IvCustomerName"
+                    android:id="@+id/IvOfflineCustomerName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -35,8 +35,8 @@
                     android:gravity="center">
 
                     <ImageView
-                        android:layout_width="@dimen/_19sdp"
-                        android:layout_height="@dimen/_19sdp"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
                         android:layout_gravity="center_horizontal|center_vertical"
                         android:src="@drawable/ic_person_icon" />
                 </LinearLayout>
@@ -45,7 +45,7 @@
                     android:id="@+id/tvCustomerName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/IvCustomerName"
+                    android:layout_toRightOf="@+id/IvOfflineCustomerName"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/_5sdp"
                     android:layout_marginLeft="@dimen/_5sdp"
@@ -60,14 +60,14 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/custmerLocationHolder"
+                android:id="@+id/offlineCustmerLocationHolder"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
                 android:orientation="horizontal"
                 android:visibility="visible">
 
                 <LinearLayout
-                    android:id="@+id/IvCustomerLocation"
+                    android:id="@+id/IvOfflineCustomerLocation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -83,10 +83,10 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/tvAddress"
+                    android:id="@+id/tvCustomerAddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/IvCustomerLocation"
+                    android:layout_toRightOf="@+id/IvOfflineCustomerLocation"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/_5sdp"
                     android:layout_marginLeft="@dimen/_5sdp"
@@ -124,7 +124,7 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/tvMobile"
+                    android:id="@+id/tvCustomerMobile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/IvCustomerMobile"
@@ -142,14 +142,14 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/paymentHolder"
+                android:id="@+id/custmerMailHolder"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
                 android:orientation="horizontal"
                 android:visibility="visible">
 
                 <LinearLayout
-                    android:id="@+id/IvPayment"
+                    android:id="@+id/IvCustomerMail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -161,20 +161,21 @@
                         android:layout_width="@dimen/_23sdp"
                         android:layout_height="@dimen/_23sdp"
                         android:layout_gravity="center_horizontal|center_vertical"
-                        android:src="@drawable/ic_payment" />
+                        android:src="@drawable/ic_mail" />
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/tvSelectedPayment"
+                    android:id="@+id/tvCustomerMail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/IvPayment"
+                    android:layout_toRightOf="@+id/IvCustomerMail"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/_5sdp"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:layout_marginEnd="@dimen/_20sdp"
                     android:layout_marginRight="@dimen/_20sdp"
                     android:fontFamily="@font/jost_regular"
+                    android:text="test@gmail.com"
                     android:textAlignment="textStart"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_13sdp" />
@@ -182,14 +183,14 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/orderStatusHolder"
+                android:id="@+id/custmerDOBHolder"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
                 android:orientation="horizontal"
                 android:visibility="visible">
 
                 <LinearLayout
-                    android:id="@+id/IvOrderStatus"
+                    android:id="@+id/IvCustomerDOB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -205,169 +206,107 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/tvOrderStatus"
+                    android:id="@+id/tvCustomerDOB"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/IvOrderStatus"
+                    android:layout_toRightOf="@+id/IvCustomerDOB"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/_5sdp"
                     android:layout_marginLeft="@dimen/_5sdp"
                     android:layout_marginEnd="@dimen/_20sdp"
                     android:layout_marginRight="@dimen/_20sdp"
                     android:fontFamily="@font/jost_regular"
+                    android:text="02-02-1994"
                     android:textAlignment="textStart"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_13sdp" />
 
             </RelativeLayout>
 
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:fontFamily="@font/jost_semibold"
-            android:text="Ordered Products : "
-            android:textColor="@color/black"
-            android:textSize="@dimen/_16sdp"
-            android:layout_marginHorizontal="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcOrderedProductList"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fitsSystemWindows="true"
-            android:orientation="vertical"
-            android:layout_marginTop="@dimen/_10sdp"
-            />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginEnd="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_7sdp">
-
             <RelativeLayout
+                android:id="@+id/custmerInstaIdHolder"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="@dimen/_7sdp">
-                <TextView
+                android:layout_height="@dimen/_40sdp"
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:id="@+id/IvInstaId"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:fontFamily="@font/jost_semibold"
-                    android:text="Sub Total : "
-                    android:textColor="@color/grey_700"
-                    android:textSize="@dimen/_14sdp"
-                    android:layout_alignParentStart="true"
-                    />
+                    android:layout_marginEnd="@dimen/_7sdp"
+                    android:layout_marginRight="@dimen/_7sdp"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="@dimen/_23sdp"
+                        android:layout_height="@dimen/_23sdp"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:src="@drawable/ic_instagram" />
+                </LinearLayout>
 
                 <TextView
-                    android:id="@+id/tvSubtotal"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/tvInstaId"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:fontFamily="@font/jost_semibold"
-                    android:text="INR 300.00"
-                    android:textColor="@color/grey_700"
-                    android:textSize="@dimen/_14sdp" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="gone"
-                android:layout_marginTop="@dimen/_7sdp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/IvInstaId"
                     android:layout_centerVertical="true"
-                    android:fontFamily="@font/jost_semibold"
-                    android:text="Delivery Charge : "
-                    android:textColor="@color/grey_700"
-                    android:textSize="@dimen/_14sdp"
-                    android:layout_alignParentStart="true"
-                    />
-
-                <TextView
-                    android:id="@+id/tvDevliveryCharge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:fontFamily="@font/jost_semibold"
-                    android:text="INR 30.00"
-                    android:textColor="@color/grey_700"
-                    android:textSize="@dimen/_14sdp" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="gone"
-                android:layout_marginTop="@dimen/_7sdp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:fontFamily="@font/jost_semibold"
-                    android:text="Tax : "
-                    android:textColor="@color/grey_800"
-                    android:textSize="@dimen/_14sdp"
-                    android:layout_alignParentStart="true"
-                    />
-
-                <TextView
-                    android:id="@+id/tvTax"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:fontFamily="@font/jost_semibold"
-                    android:text="INR 10.00"
-                    android:textColor="@color/grey_700"
-                    android:textSize="@dimen/_14sdp"
-                    android:layout_alignParentEnd="true"
-                    />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="@dimen/_7sdp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:fontFamily="@font/jost_semibold"
-                    android:text="Total : "
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:layout_marginRight="@dimen/_20sdp"
+                    android:fontFamily="@font/jost_regular"
+                    android:text=""
+                    android:textAlignment="textStart"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_14sdp"
-                    android:layout_alignParentStart="true"
-                    />
+                    android:textSize="@dimen/_13sdp" />
 
-                <TextView
-                    android:id="@+id/tvTotal"
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/custmerWhatsappHolder"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:id="@+id/IvWhatsapp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:fontFamily="@font/jost_semibold"
-                    android:text="INR 340.00"
+                    android:layout_marginEnd="@dimen/_7sdp"
+                    android:layout_marginRight="@dimen/_7sdp"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="@dimen/_23sdp"
+                        android:layout_height="@dimen/_23sdp"
+                        android:layout_gravity="center_horizontal|center_vertical"
+                        android:src="@drawable/ic_whatsapp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvWhatsapp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/IvWhatsapp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:layout_marginRight="@dimen/_20sdp"
+                    android:fontFamily="@font/jost_regular"
+                    android:text=""
+                    android:textAlignment="textStart"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_14sdp"
-                    android:layout_alignParentEnd="true"
-                    />
+                    android:textSize="@dimen/_13sdp" />
+
             </RelativeLayout>
+
 
         </LinearLayout>
-
 
     </LinearLayout>
 

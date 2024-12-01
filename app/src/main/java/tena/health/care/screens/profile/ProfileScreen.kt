@@ -21,6 +21,8 @@ import tena.health.care.interfaces.ActivityActionListener
 import tena.health.care.models.User
 import tena.health.care.screens.cart.CartScreen
 import tena.health.care.screens.notifications.NotificationListScreen
+import tena.health.care.screens.offlineCustomer.OfflineCustomerDeleteBottomSheet
+import tena.health.care.screens.offlineCustomer.OfflineCustomersListScreen
 import tena.health.care.screens.orders.OrderListScreen
 import tena.health.care.utils.USER_DETAILS
 import tena.health.care.utils.loadImageFromUrl
@@ -31,6 +33,7 @@ class ProfileScreen : Fragment() {
 
     private lateinit var backBtnHolder: LinearLayout
     private lateinit var personalInfoHolder: RelativeLayout
+    private lateinit var offlineCustomerHolder: RelativeLayout
     private lateinit var addressHolder: RelativeLayout
     private lateinit var cartHolder: RelativeLayout
     private lateinit var ordersHolder: RelativeLayout
@@ -77,6 +80,11 @@ class ProfileScreen : Fragment() {
         personalInfoHolder = view.findViewById(R.id.personalInfoHolder)
         personalInfoHolder.setOnClickListener {
             loadScreen(requireActivity(), PersonalInfoScreen())
+        }
+
+        offlineCustomerHolder = view.findViewById(R.id.offlineCustomerHolder)
+        offlineCustomerHolder.setOnClickListener {
+            loadScreen(requireActivity(), OfflineCustomersListScreen())
         }
 
         addressHolder = view.findViewById(R.id.addressHolder)
