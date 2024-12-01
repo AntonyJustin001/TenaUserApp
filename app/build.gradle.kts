@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.googleServices)
+    alias(libs.plugins.crashlytics)
 }
 
 android {
@@ -52,6 +53,7 @@ dependencies {
     implementation(libs.responsive)
     implementation(platform(libs.firebaseBom))
     implementation(libs.firebaseAnalytics)
+    implementation("com.google.firebase:firebase-crashlytics")
     implementation(libs.firebaseAuth)
     implementation(libs.firebaseDatabase)
     implementation(libs.fireStore)

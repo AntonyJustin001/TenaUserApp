@@ -47,21 +47,24 @@ class SplashScreen : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        Log.e("Test","User Details - ${prefs.get(USER_DETAILS, "")}")
+        Log.e("Test", "User Details - ${prefs.get(USER_DETAILS, "")}")
+        try {
+            activityActionListener?.showOrHideCart(false)
 
-        activityActionListener?.showOrHideCart(false)
-
-        Handler(Looper.getMainLooper()).postDelayed({
-            if(prefs.get(COMPLETE_INTRO,"") == "completed") {
-                if(prefs.get(USER_DETAILS,"")!="") {
-                    loadScreen(requireActivity(),HomeScreen())
+            Handler(Looper.getMainLooper()).postDelayed({
+                if (prefs.get(COMPLETE_INTRO, "") == "completed") {
+                    if (prefs.get(USER_DETAILS, "") != "") {
+                        loadScreen(requireActivity(), HomeScreen())
+                    } else {
+                        loadScreen(requireActivity(), SignInScreen())
+                    }
                 } else {
-                    loadScreen(requireActivity(), SignInScreen())
+                    loadScreen(requireActivity(), IntroScreen())
                 }
-            } else {
-                loadScreen(requireActivity(), IntroScreen())
-            }
-        }, 5000)
+            }, 5000)
+        } catch (e: Exception) {
+            Log.e("Exception ==> ","SplashScreen ==> ${e.message}")
+        }
     }
 
     override fun onDetach() {

@@ -69,6 +69,7 @@ class OrderListScreen : Fragment() {
 
         orderRef = db.collection("order")
             .whereEqualTo("userId", userId)
+            .orderBy("orderId", Query.Direction.DESCENDING)
 
         progressBar.visibility = View.VISIBLE
         orderRef.addSnapshotListener { snapshots, e ->

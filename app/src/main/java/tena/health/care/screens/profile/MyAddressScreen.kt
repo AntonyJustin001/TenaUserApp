@@ -1,5 +1,6 @@
 package tena.health.care.screens.profile
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -57,11 +58,12 @@ class MyAddressScreen : Fragment() {
     private lateinit var ivClearHomeAddress: ImageView
     private lateinit var etHomeAddressHolder: LinearLayout
     private lateinit var etHomeAddress: EditText
+
+    private lateinit var tvWorkAddress: TextView
     private lateinit var ivEditWork: ImageView
     private lateinit var ivRemoveWork: ImageView
     private lateinit var ivConfirmWorkAddress: ImageView
     private lateinit var ivClearWorkAddress: ImageView
-    private lateinit var tvWorkAddress: TextView
     private lateinit var etWorkAddressHolder: LinearLayout
     private lateinit var etWorkAddress: EditText
     private lateinit var progressBar: LottieAnimationView
@@ -90,6 +92,7 @@ class MyAddressScreen : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        db = FirebaseFirestore.getInstance()
         activityActionListener?.showOrHideCart(false)
 
         backBtnHolder = view.findViewById(R.id.backBtnHolder)
@@ -104,6 +107,7 @@ class MyAddressScreen : Fragment() {
         ivClearHomeAddress = view.findViewById(R.id.ivClearHomeAddress)
         etHomeAddressHolder = view.findViewById(R.id.etHomeAddressHolder)
         etHomeAddress = view.findViewById(R.id.etHomeAddress)
+
         ivEditWork = view.findViewById(R.id.ivEditWork)
         ivRemoveWork = view.findViewById(R.id.ivRemoveWork)
         ivConfirmWorkAddress = view.findViewById(R.id.ivConfirmWorkAddress)
@@ -125,39 +129,60 @@ class MyAddressScreen : Fragment() {
         }
 
         ivRemoveHome.setOnClickListener {
-            val updatedDetails = hashMapOf(
-                "address" to "",
-            )
-            updateHomeAddressEmail(currentUserDetails.emailId, updatedDetails,
-                onSuccessListener = {
-                    progressBar.visibility = View.GONE
-                    etHomeAddressHolder.visibility = View.VISIBLE
-                    tvHomeAddress.visibility = View.GONE
-                    ivClearHomeAddress.visibility = View.VISIBLE
-                    ivConfirmHomeAddress.visibility = View.VISIBLE
-                    ivEditHome.visibility = View.GONE
-                    ivRemoveHome.visibility = View.GONE
-                    etHomeAddress.setText("")
-                    tvHomeAddress.text = ""
-                },
-                onFailureListener = {
-                    progressBar.visibility = View.GONE
-                    tvHomeAddress.text = etHomeAddress.text
-                    tvHomeAddress.visibility = View.GONE
-                    etHomeAddressHolder.visibility = View.VISIBLE
-                })
+
+            val builder = AlertDialog.Builder(requireContext())
+            builder.setTitle("Confirm Remove Home Address")
+                .setMessage("Are you sure you want to proceed?")
+
+                // Set the positive "Yes" button
+                .setPositiveButton("Yes") { dialog, which ->
+                    val updatedDetails = hashMapOf(
+                        "homeAddress" to "",
+                    )
+                    updateAddress(currentUserDetails.userId, updatedDetails,
+                        "Home Address Removed Successfully",
+                        onSuccessListener = {
+                            progressBar.visibility = View.GONE
+                            tvHomeAddress.text = etHomeAddress.text
+                            tvHomeAddress.visibility = View.VISIBLE
+                            etHomeAddressHolder.visibility = View.GONE
+                            ivClearHomeAddress.visibility = View.GONE
+                            ivConfirmHomeAddress.visibility = View.GONE
+                            ivEditHome.visibility = View.VISIBLE
+                            ivRemoveHome.visibility = View.VISIBLE
+                        },
+                        onFailureListener = {
+                            progressBar.visibility = View.GONE
+                            tvHomeAddress.text = etHomeAddress.text
+                            tvHomeAddress.visibility = View.GONE
+                            etHomeAddressHolder.visibility = View.VISIBLE
+                        })
+                }
+
+                // Set the negative "No" button
+                .setNegativeButton("No") { dialog, which ->
+                    // Handle No button click
+                }
+
+            // Show the dialog
+            builder.create().show()
         }
 
         ivConfirmHomeAddress.setOnClickListener {
             val updatedDetails = hashMapOf(
-                "address" to etHomeAddress.text.toString(),
+                "homeAddress" to etHomeAddress.text.toString(),
             )
-            updateHomeAddressEmail(currentUserDetails.emailId, updatedDetails,
+            updateAddress(currentUserDetails.userId, updatedDetails,
+                "Home Address Added Successfully",
                 onSuccessListener = {
                     progressBar.visibility = View.GONE
                     tvHomeAddress.text = etHomeAddress.text
                     tvHomeAddress.visibility = View.VISIBLE
                     etHomeAddressHolder.visibility = View.GONE
+                    ivClearHomeAddress.visibility = View.GONE
+                    ivConfirmHomeAddress.visibility = View.GONE
+                    ivEditHome.visibility = View.VISIBLE
+                    ivRemoveHome.visibility = View.VISIBLE
                 },
                 onFailureListener = {
                     progressBar.visibility = View.GONE
@@ -180,89 +205,154 @@ class MyAddressScreen : Fragment() {
 
 
 
+        ivEditWork.setOnClickListener {
+            etWorkAddressHolder.visibility = View.VISIBLE
+            tvWorkAddress.visibility = View.GONE
+            ivClearWorkAddress.visibility = View.VISIBLE
+            ivConfirmWorkAddress.visibility = View.VISIBLE
+            ivEditWork.visibility = View.GONE
+            ivRemoveWork.visibility = View.GONE
+        }
 
-    }
+        ivRemoveWork.setOnClickListener {
 
-    fun updateHomeAddressEmail(emailId: String, updatedDetails: Map<String, Any>) {
-        val db = FirebaseFirestore.getInstance()
-        progressBar.visibility = View.VISIBLE
-        db.collection("users")
-            .whereEqualTo("emailId", emailId) // Query where name matches
-            .get()
-            .addOnSuccessListener { documents ->
-                if (documents != null && !documents.isEmpty) {
-                    for (document in documents) {
-                        // Update the document found with new details
-                        db.collection("users")
-                            .document(emailId)
-                            .update(updatedDetails)
-                            .addOnSuccessListener {
-                                Snackbar.make(requireView(), "product Edited Successfully", Snackbar.LENGTH_LONG).show()
+            val builder = AlertDialog.Builder(requireContext())
+            builder.setTitle("Confirm Remove Work Address")
+                .setMessage("Are you sure you want to proceed?")
 
-                            }
-                            .addOnFailureListener { e ->
-                                Log.w("Firestore", "Error updating document", e)
-                                Snackbar.make(requireView(), "Something went wrong please try again", Snackbar.LENGTH_LONG).show()
-                                progressBar.visibility = View.GONE
-                                tvHomeAddress.text = etHomeAddress.text
-                                tvHomeAddress.visibility = View.GONE
-                                etHomeAddressHolder.visibility = View.VISIBLE
-                            }
-                    }
-                } else {
-                    Log.d("Firestore", "No such document found!")
-                    Snackbar.make(requireView(), "Something went wrong please try again", Snackbar.LENGTH_LONG).show()
-                    progressBar.visibility = View.GONE
-                    tvHomeAddress.text = etHomeAddress.text
-                    tvHomeAddress.visibility = View.GONE
-                    etHomeAddressHolder.visibility = View.VISIBLE
+                // Set the positive "Yes" button
+                .setPositiveButton("Yes") { dialog, which ->
+                    val updatedDetails = hashMapOf(
+                        "workAddress" to "",
+                    )
+                    updateAddress(currentUserDetails.userId, updatedDetails,
+                        "Work Address Removed Successfully",
+                        onSuccessListener = {
+                            progressBar.visibility = View.GONE
+                            tvWorkAddress.text = etWorkAddress.text
+                            tvWorkAddress.visibility = View.VISIBLE
+                            etWorkAddressHolder.visibility = View.GONE
+                            ivClearWorkAddress.visibility = View.GONE
+                            ivConfirmWorkAddress.visibility = View.GONE
+                            ivEditWork.visibility = View.VISIBLE
+                            ivRemoveWork.visibility = View.VISIBLE
+                        },
+                        onFailureListener = {
+                            progressBar.visibility = View.GONE
+                            tvWorkAddress.text = etWorkAddress.text
+                            tvWorkAddress.visibility = View.GONE
+                            etWorkAddressHolder.visibility = View.VISIBLE
+                        })
                 }
+
+                // Set the negative "No" button
+                .setNegativeButton("No") { dialog, which ->
+                    // Handle No button click
+                }
+
+            // Show the dialog
+            builder.create().show()
+        }
+
+        ivConfirmWorkAddress.setOnClickListener {
+            val updatedDetails = hashMapOf(
+                "workAddress" to etWorkAddress.text.toString(),
+            )
+            updateAddress(currentUserDetails.userId, updatedDetails,
+                "Work Address Added Successfully",
+                onSuccessListener = {
+                    progressBar.visibility = View.GONE
+                    tvWorkAddress.text = etWorkAddress.text
+                    tvWorkAddress.visibility = View.VISIBLE
+                    etWorkAddressHolder.visibility = View.GONE
+                    ivClearWorkAddress.visibility = View.GONE
+                    ivConfirmWorkAddress.visibility = View.GONE
+                    ivEditWork.visibility = View.VISIBLE
+                    ivRemoveWork.visibility = View.VISIBLE
+                },
+                onFailureListener = {
+                    progressBar.visibility = View.GONE
+                    tvWorkAddress.text = etWorkAddress.text
+                    tvWorkAddress.visibility = View.GONE
+                    etWorkAddressHolder.visibility = View.VISIBLE
+                })
+        }
+
+        ivClearWorkAddress.setOnClickListener {
+            etWorkAddress.setText("")
+            tvWorkAddress.text = ""
+            tvWorkAddress.visibility = View.GONE
+            etWorkAddressHolder.visibility = View.VISIBLE
+            ivClearWorkAddress.visibility = View.VISIBLE
+            ivConfirmWorkAddress.visibility = View.VISIBLE
+            ivEditWork.visibility = View.GONE
+            ivRemoveWork.visibility = View.GONE
+        }
+
+
+
+
+        val userRef = db.collection("users")
+            .document(currentUserDetails.userId)
+        userRef.addSnapshotListener { snapshot, e ->
+            if (e != null) {
+                Log.w("Firestore", "Listen failed.", e)
+                return@addSnapshotListener
             }
-            .addOnFailureListener { exception ->
-                Log.w("Firestore", "Error getting documents: ", exception)
-                Snackbar.make(requireView(), "Something went wrong please try again", Snackbar.LENGTH_LONG).show()
-                progressBar.visibility = View.GONE
-                tvHomeAddress.text = etHomeAddress.text
-                tvHomeAddress.visibility = View.GONE
-                etHomeAddressHolder.visibility = View.VISIBLE
+
+            if (snapshot != null && snapshot.exists()) {
+                val user = snapshot.toObject(User::class.java)
+                tvHomeAddress.text = if(user?.homeAddress == "") "--" else user?.homeAddress
+                etHomeAddress.setText(user?.homeAddress)
+                tvWorkAddress.text = if(user?.workAddress == "") "--" else user?.workAddress
+                etWorkAddress.setText(user?.workAddress)
+            } else {
+                Log.e("Firestore", "User data is null")
             }
+        }
+
     }
 
-    fun updateHomeAddressEmail(emailId: String, updatedDetails: Map<String, Any>,onSuccessListener: () -> Unit = {}
+    fun updateAddress(userId: String, updatedDetails: Map<String, Any>,
+                          onSuccessMessage: String,
+                          onSuccessListener: () -> Unit = {}
                                ,onFailureListener: () -> Unit = {}) {
-        val db = FirebaseFirestore.getInstance()
-        progressBar.visibility = View.VISIBLE
-        db.collection("users")
-            .whereEqualTo("emailId", emailId) // Query where name matches
-            .get()
-            .addOnSuccessListener { documents ->
-                if (documents != null && !documents.isEmpty) {
-                    for (document in documents) {
-                        // Update the document found with new details
-                        db.collection("users")
-                            .document(emailId)
-                            .update(updatedDetails)
-                            .addOnSuccessListener {
-                                Snackbar.make(requireView(), "product Edited Successfully", Snackbar.LENGTH_LONG).show()
-                                onSuccessListener()
-                            }
-                            .addOnFailureListener { e ->
-                                Log.w("Firestore", "Error updating document", e)
-                                Snackbar.make(requireView(), "Something went wrong please try again", Snackbar.LENGTH_LONG).show()
-                                onFailureListener()
-                            }
+        if (isAdded) {
+            val db = FirebaseFirestore.getInstance()
+            progressBar.visibility = View.VISIBLE
+            db.collection("users")
+                .whereEqualTo("userId", userId) // Query where name matches
+                .get()
+                .addOnSuccessListener { documents ->
+                    if (documents != null && !documents.isEmpty) {
+                        for (document in documents) {
+                            // Update the document found with new details
+                            db.collection("users")
+                                .document(userId)
+                                .update(updatedDetails)
+                                .addOnSuccessListener {
+                                    Snackbar.make(requireView(), onSuccessMessage, Snackbar.LENGTH_LONG).show()
+                                    onSuccessListener()
+                                }
+                                .addOnFailureListener { e ->
+                                    Log.w("Firestore", "Error updating document", e)
+                                    Snackbar.make(requireView(), "Something went wrong please try again", Snackbar.LENGTH_LONG).show()
+                                    onFailureListener()
+                                }
+                        }
+                    } else {
+                        Log.d("Firestore", "No such document found!")
+                        Snackbar.make(requireView(), "Something went wrong please try again", Snackbar.LENGTH_LONG).show()
+                        onFailureListener()
                     }
-                } else {
-                    Log.d("Firestore", "No such document found!")
+                }
+                .addOnFailureListener { exception ->
+                    Log.w("Firestore", "Error getting documents: ", exception)
                     Snackbar.make(requireView(), "Something went wrong please try again", Snackbar.LENGTH_LONG).show()
                     onFailureListener()
                 }
-            }
-            .addOnFailureListener { exception ->
-                Log.w("Firestore", "Error getting documents: ", exception)
-                Snackbar.make(requireView(), "Something went wrong please try again", Snackbar.LENGTH_LONG).show()
-                onFailureListener()
-            }
+        }
+
     }
 
 }

@@ -10,7 +10,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -54,6 +53,7 @@ class CheckOutScreen : Fragment(), PaymentResultWithDataListener, ExternalWallet
     lateinit var orderRef: CollectionReference
     var selectedPayment = ""
     var selectedAddress = ""
+    var storedAddress = ""
     val cartItems = mutableListOf<CartItem?>()
     private lateinit var progressBar: LottieAnimationView
     lateinit var customDialog: CustomDialog
@@ -95,28 +95,37 @@ class CheckOutScreen : Fragment(), PaymentResultWithDataListener, ExternalWallet
         btnPlaceOrder = view.findViewById(R.id.btnPlaceOrder)
         btnPlaceOrder.setOnClickListener {
             if(selectedAddress!= "") {
-                if(selectedPayment!= "") {
-                    if(selectedPayment == "Razor Pay") {
-                        startPayment()
-                    } else {
-                        placeOrder(
-                            Order(
-                                orderId = if(latestOrderId != "") (latestOrderId.toInt()+1).toString() else "0",
-                                cardItems = cartItems.toList(),
-                                selectedPayment = selectedPayment,
-                                orderPlacedDate = getCurrentTime(),
-                                total = TotalCalculation().subTotal.toString(),
-                                subTotal = TotalCalculation().subTotal.toString(),
-                                shippingAddress = selectedAddress,
-                                userId = userId,
-                                customerName = user?.name?:"",
-                                customerMobile = user?.mobileNo?:"",
-                                orderStatus = "Pending"
+                storedAddress = if(selectedAddress == "Home") user?.homeAddress?:"" else user?.workAddress?:""
+                if(storedAddress!= "") {
+                    if(selectedPayment!= "") {
+                        if(selectedPayment == "Razor Pay") {
+                            if(user?.mobileNo!="") {
+                                startPayment(latestOrderId, TotalCalculation().subTotal.toString(), user)
+                            } else {
+                                Snackbar.make(requireView(), "Please enter your mobile number is settings", Snackbar.LENGTH_LONG).show()
+                            }
+                        } else {
+                            placeOrder(
+                                Order(
+                                    orderId = if(latestOrderId != "") (latestOrderId.toInt()+1).toString() else "0",
+                                    cardItems = cartItems.toList(),
+                                    selectedPayment = selectedPayment,
+                                    orderPlacedDate = getCurrentTime(),
+                                    total = TotalCalculation().subTotal.toString(),
+                                    subTotal = TotalCalculation().subTotal.toString(),
+                                    shippingAddress = storedAddress,
+                                    userId = userId,
+                                    customerName = user?.name?:"",
+                                    customerMobile = user?.mobileNo?:"",
+                                    orderStatus = "Pending"
+                                )
                             )
-                        )
+                        }
+                    } else {
+                        Snackbar.make(requireView(), "Please Select Payment", Snackbar.LENGTH_LONG).show()
                     }
                 } else {
-                    Snackbar.make(requireView(), "Please Select Payment", Snackbar.LENGTH_LONG).show()
+                    Snackbar.make(requireView(), "Please Fill Your Address", Snackbar.LENGTH_LONG).show()
                 }
             } else {
                 Snackbar.make(requireView(), "Please Select Address", Snackbar.LENGTH_LONG).show()
@@ -158,7 +167,6 @@ class CheckOutScreen : Fragment(), PaymentResultWithDataListener, ExternalWallet
 
         orderRef = FirebaseFirestore.getInstance().collection("order")
         getLatestOrderId()
-
 
         val userRef = db.collection("users")
             .document(userId)
@@ -210,30 +218,34 @@ class CheckOutScreen : Fragment(), PaymentResultWithDataListener, ExternalWallet
             }
     }
 
-    private fun startPayment() {
+    private fun startPayment(orderNo:String, amount:String, user: User?/*, userName:String, mobile:String*/) {
         val co = Checkout()
         co.setKeyID("rzp_live_cNu44G1fcy0MXf")
         try {
             var options = JSONObject()
             options.put("name", "Tena Health Care")
-            options.put("description", "Demoing Charges")
+            options.put("description", "Order No. #${orderNo}")
+            options.put("send_sms_hash",true)
+            options.put("theme.color", "#2e7f70")
             //You can omit the image option to fetch the image from dashboard
             options.put("image", "https://firebasestorage.googleapis.com/v0/b/tenahealthcare-1e82e.appspot.com/o/AppLogo.jpg?alt=media&token=78b7fdb2-7e8c-42e8-84a0-f73e6e2c18e1")
             options.put("currency", "INR")
-            options.put("amount", "1")
+            val dynamicAmountInRupees = amount.toDouble() // Replace with your dynamic value in INR
+            val amountInPaise = dynamicAmountInRupees.toInt() * 100
+            options.put("amount", "$amountInPaise")
             options.put("send_sms_hash", true);
 
-            val userDetailsRaw = Gson().fromJson(prefs.get(USER_DETAILS, ""), User::class.java)
+            //val userDetailsRaw = Gson().fromJson(prefs.get(USER_DETAILS, ""), User::class.java)
 
             val prefill = JSONObject()
-            prefill.put("email", if(userDetailsRaw.emailId=="") "test@gmail.com" else userDetailsRaw.emailId)
-            prefill.put("contact", if(userDetailsRaw.mobileNo=="") "9876543210" else userDetailsRaw.mobileNo)
+            prefill.put("email", user?.emailId)
+            prefill.put("contact", user?.mobileNo)
 
             options.put("prefill", prefill)
 
             co.open(activity, options)
         } catch (e: Exception) {
-            Toast.makeText(activity, "Error in payment: " + e.message, Toast.LENGTH_LONG).show()
+            Log.e("Exception","startPayment - Error in payment:   ${e.message}")
             e.printStackTrace()
         }
     }
@@ -268,7 +280,7 @@ class CheckOutScreen : Fragment(), PaymentResultWithDataListener, ExternalWallet
             }
     }
 
-    override fun onPaymentSuccess(p0: String?, p1: PaymentData?) {
+    override fun onPaymentSuccess(p0: String, p1: PaymentData) {
         try {
             placeOrder(
                 Order(
@@ -278,7 +290,7 @@ class CheckOutScreen : Fragment(), PaymentResultWithDataListener, ExternalWallet
                     orderPlacedDate = getCurrentTime(),
                     total = TotalCalculation().subTotal.toString(),
                     subTotal = TotalCalculation().subTotal.toString(),
-                    shippingAddress = selectedAddress,
+                    shippingAddress = storedAddress,
                     userId = userId,
                     customerName = user?.name?:"",
                     customerMobile = user?.mobileNo?:"",
@@ -286,14 +298,16 @@ class CheckOutScreen : Fragment(), PaymentResultWithDataListener, ExternalWallet
                 )
             )
             Log.e("Test","Payment Successful : Payment ID: $p0\nPayment Data: ${p1?.data}")
+            Snackbar.make(requireView(), "Payment was successful ", Snackbar.LENGTH_LONG).show()
         } catch (e: Exception) {
             e.printStackTrace()
         }
     }
 
-    override fun onPaymentError(p0: Int, p1: String?, p2: PaymentData?) {
+    override fun onPaymentError(p0: Int, p1: String, p2: PaymentData) {
         try {
-            Snackbar.make(requireView(), "\"Payment Failed : Payment Data: ${p2?.data}, Please Try Again Later!", Snackbar.LENGTH_LONG).show()
+            Log.e("Test","Payment Error - Payment Data: ${p2?.data} p1 - $p1 p0 - $p0")
+            Snackbar.make(requireView(), "Sorry! Payment Failed : , Please Try Again Later!", Snackbar.LENGTH_LONG).show()
         } catch (e: Exception){
             e.printStackTrace()
         }
@@ -326,5 +340,14 @@ class CheckOutScreen : Fragment(), PaymentResultWithDataListener, ExternalWallet
                 totalPrice.deliveryCharge
         totalPrice = totalPrice.copy(total = Total)
         return totalPrice
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        try {
+            Checkout.clearUserData(requireContext())  // Clear any resources from the Razorpay SDK
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 }

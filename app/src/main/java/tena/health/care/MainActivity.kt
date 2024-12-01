@@ -50,6 +50,8 @@ class MainActivity : AppCompatActivity(), ActivityActionListener {
             loadFragment(CartScreen(), Cart_Screen)
         }
 
+        //throw RuntimeException("Test Crash") // Force a crash
+
 
         if (savedInstanceState == null) {
             loadFragment(SplashScreen(), Splash_Screen)
