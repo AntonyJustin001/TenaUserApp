@@ -54,12 +54,12 @@ class SplashScreen : Fragment() {
             Handler(Looper.getMainLooper()).postDelayed({
                 if (prefs.get(COMPLETE_INTRO, "") == "completed") {
                     if (prefs.get(USER_DETAILS, "") != "") {
-                        loadScreen(requireActivity(), HomeScreen())
+                        loadScreen(requireActivity(), HomeScreen(),"From","SplashScreen")
                     } else {
-                        loadScreen(requireActivity(), SignInScreen())
+                        loadScreen(requireActivity(), SignInScreen(),"From","SplashScreen")
                     }
                 } else {
-                    loadScreen(requireActivity(), IntroScreen())
+                    loadScreen(requireActivity(), IntroScreen(),"From","SplashScreen")
                 }
             }, 5000)
         } catch (e: Exception) {

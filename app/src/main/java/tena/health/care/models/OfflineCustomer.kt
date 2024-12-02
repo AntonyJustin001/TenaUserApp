@@ -6,7 +6,8 @@ data class OfflineCustomer(
     val emailId: String = "",
     val mobileNo: String = "",
     val whatsapp: String = "",
-    val DOB: String = "",
+    val dateOfBirth: String = "",
+    val soldProduct:String = "",
     val homeAddress: String = "",
     val workAddress: String = "",
     val instaId: String = "",
@@ -14,5 +15,6 @@ data class OfflineCustomer(
     val offersAvailable: String = "",
     val bio: String = "",
     val profilePic: String = "",
-    val fcmToken:String = ""
+    val fcmToken:String = "",
+    val addedDate:String = ""
 )

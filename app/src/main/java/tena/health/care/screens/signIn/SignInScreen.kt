@@ -57,7 +57,7 @@ class SignInScreen : Fragment() {
         // Set the first link ("Click here")
         val clickableSpan1 = object : ClickableSpan() {
             override fun onClick(widget: View) {
-                loadScreen(requireActivity(),SignUpScreen())
+                loadScreen(requireActivity(),SignUpScreen(),"From","SignInScreen")
             }
         }
         val start1 = fullText.indexOf("SIGNUP")
@@ -91,7 +91,7 @@ class SignInScreen : Fragment() {
                                 prefs.put(USER_DETAILS, Gson().toJson(userData))
 
                                 //LoadHome Screen
-                                loadScreen(requireActivity(), HomeScreen())
+                                loadScreen(requireActivity(), HomeScreen(),"From","SignInScreen")
                                 progressBar.visibility = View.GONE
                                 Log.e("Test", "Sign-In Successful")
                             } else {

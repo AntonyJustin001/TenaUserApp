@@ -12,8 +12,6 @@ import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import tena.health.care.R
 import tena.health.care.models.OfflineCustomer
-import tena.health.care.screens.offlineCustomer.OfflineCustomerDetailsScreen
-import tena.health.care.utils.loadScreen
 
 class OfflineCustomersListAdapter(val context: Context, val activity: FragmentActivity, val parentFragmentManager: FragmentManager, val fragment:Fragment,
                                   private val items: List<OfflineCustomer>) :
@@ -35,7 +33,9 @@ class OfflineCustomersListAdapter(val context: Context, val activity: FragmentAc
         private val tvName: TextView = itemView.findViewById(R.id.tvName)
         private val tvEmailId: TextView = itemView.findViewById(R.id.tvEmailId)
         private val tvMobile: TextView = itemView.findViewById(R.id.tvMobile)
-        private val tvStatus: TextView = itemView.findViewById(R.id.tvStatus)
+        private val tvDOB: TextView = itemView.findViewById(R.id.tvDOB)
+        private val tvSoldProduct: TextView = itemView.findViewById(R.id.tvSoldProduct)
+        private val tvAddedDate: TextView = itemView.findViewById(R.id.tvAddedDate)
         private val customerHolder: LinearLayout = itemView.findViewById(R.id.customerHolder)
 
         fun bind(customer: OfflineCustomer) {
@@ -43,11 +43,13 @@ class OfflineCustomersListAdapter(val context: Context, val activity: FragmentAc
             tvName.text = customer.name
             tvEmailId.text = customer.emailId
             tvMobile.text = customer.mobileNo
-            //tvStatus.text = customer.status
+            tvDOB.text = customer.dateOfBirth
+            tvSoldProduct.text = customer.soldProduct
+            tvAddedDate.text = customer.addedDate
 
             customerHolder.setOnClickListener {
                 //Log.e("Test","Order Id ${order.orderId}")
-                loadScreen(activity, OfflineCustomerDetailsScreen(customer.userId))
+                //loadScreen(activity, OfflineCustomerDetailsScreen(customer.userId))
             }
 
         }

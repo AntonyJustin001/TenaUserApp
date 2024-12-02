@@ -16,11 +16,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.gson.Gson
 import tena.health.care.R
 import tena.health.care.models.OfflineCustomer
+import tena.health.care.models.User
 import tena.health.care.screens.offlineCustomer.adapter.OfflineCustomersListAdapter
+import tena.health.care.utils.USER_DETAILS
 import tena.health.care.utils.loadScreen
+import tena.health.care.utils.prefs
 
 class OfflineCustomersListScreen : Fragment() {
 
@@ -32,6 +37,10 @@ class OfflineCustomersListScreen : Fragment() {
     private lateinit var ivAddOfflineCustomer: ImageView
     private lateinit var progressBar: LottieAnimationView
 
+    lateinit var db:FirebaseFirestore
+    lateinit var offlineCustomerRef: CollectionReference
+    lateinit var userDetails: User
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -42,6 +51,9 @@ class OfflineCustomersListScreen : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        userDetails = Gson().fromJson(prefs.get(USER_DETAILS, ""), User::class.java)
+        db = FirebaseFirestore.getInstance()
+        offlineCustomerRef = db.collection("users").document(userDetails.userId).collection("offline_customer")
         progressBar = view.findViewById(R.id.progressBar)
         etSearch = view.findViewById(R.id.etSearch)
         rcOfflineCustomers = view.findViewById(R.id.rvCustomers)
@@ -56,7 +68,7 @@ class OfflineCustomersListScreen : Fragment() {
 
         ivAddOfflineCustomer = view.findViewById(R.id.ivAddcustomer)
         ivAddOfflineCustomer.setOnClickListener {
-            loadScreen(requireActivity(), offlineCustomerDetailAddEdit(""),"Type","Add")
+            loadScreen(requireActivity(), AddOfflineCustomer(),"Type","Add")
         }
 
         loadOfflineCustomerList()
@@ -103,8 +115,7 @@ class OfflineCustomersListScreen : Fragment() {
 
     fun getAllcustomers(oncustomersRetrieved: (List<OfflineCustomer>) -> Unit) {
         progressBar.visibility = View.VISIBLE
-        val db = FirebaseFirestore.getInstance()
-        db.collection("offline_customer")
+        offlineCustomerRef
             .get()
             .addOnSuccessListener { result ->
                 val customerList = mutableListOf<OfflineCustomer>()
@@ -123,11 +134,8 @@ class OfflineCustomersListScreen : Fragment() {
     }
 
     fun searchcustomers(searchWord: String, onResult: (List<OfflineCustomer>) -> Unit) {
-        val db = FirebaseFirestore.getInstance()
-        val customersRef = db.collection("offline_customer")
-
         // Simple search based on exact match
-        customersRef.whereGreaterThanOrEqualTo("name", searchWord)
+        offlineCustomerRef.whereGreaterThanOrEqualTo("name", searchWord)
             .whereLessThanOrEqualTo("name", searchWord + '\uf8ff')
             .get()
             .addOnSuccessListener { documents ->
